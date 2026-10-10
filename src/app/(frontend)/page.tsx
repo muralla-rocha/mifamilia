@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 
+import { ContactForm } from '@/components/ContactForm'
 import { SiteFooter } from '@/components/SiteFooter'
 import { SiteHeader } from '@/components/SiteHeader'
 import { directionsUrl, locations } from '@/lib/locations'
@@ -233,63 +234,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <form action="#contact" className="form">
-              <h3 className="display form-title">Send us a message</h3>
-              <div className="form-row">
-                <div className="field">
-                  <label htmlFor="name">Name</label>
-                  <input
-                    autoComplete="name"
-                    id="name"
-                    name="name"
-                    placeholder="Your name"
-                    required
-                  />
-                </div>
-                <div className="field">
-                  <label htmlFor="phone">Phone</label>
-                  <input
-                    autoComplete="tel"
-                    id="phone"
-                    name="phone"
-                    placeholder="(415) 000-0000"
-                    type="tel"
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <label htmlFor="email">Email</label>
-                <input
-                  autoComplete="email"
-                  id="email"
-                  name="email"
-                  placeholder="you@email.com"
-                  required
-                  type="email"
-                />
-              </div>
-              <div className="field">
-                <label htmlFor="location">Location</label>
-                <select defaultValue="" id="location" name="location">
-                  <option disabled value="">
-                    Choose San Anselmo or San Rafael
-                  </option>
-                  <option value="san-anselmo">San Anselmo</option>
-                  <option value="san-rafael">San Rafael</option>
-                </select>
-              </div>
-              <div className="field">
-                <label htmlFor="message">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  placeholder="Questions, catering, big family orders…"
-                />
-              </div>
-              <button className="btn btn-red" type="submit">
-                Send Message&nbsp;&nbsp;→
-              </button>
-            </form>
+            <ContactForm />
           </div>
         </section>
       </main>

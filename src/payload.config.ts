@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 
 import { Users } from './collections/Users'
+import { ContactMessages } from './collections/ContactMessages'
 import { Media } from './collections/Media'
 import { MenuCategories } from './collections/MenuCategories'
 import { MenuItems } from './collections/MenuItems'
@@ -22,7 +23,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, MenuCategories, MenuItems],
+  collections: [Users, Media, MenuCategories, MenuItems, ContactMessages],
   globals: [MenuSettings],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
