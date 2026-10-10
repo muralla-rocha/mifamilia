@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import React from 'react'
 
+import { MobileNav } from './MobileNav'
+
 export function SiteHeader() {
   return (
     <header className="band-nav">
@@ -18,7 +20,7 @@ export function SiteHeader() {
         <nav aria-label="Principal" className="nav-links">
           <a href="/#home">Home</a>
           <a href="/#about">About Us</a>
-          <a href="/#menu">Menu</a>
+          <a href="/menu">Menu</a>
           <a href="/#locations">Locations</a>
           <a href="/#contact">Contact</a>
         </nav>
@@ -32,11 +34,7 @@ export function SiteHeader() {
           <a className="nav-call" href="tel:+14152569411">
             Call us
           </a>
-          <button aria-label="Abrir menú" className="nav-burger" type="button">
-            <span />
-            <span />
-            <span />
-          </button>
+          <MobileNav />
         </div>
       </div>
     </header>
