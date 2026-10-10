@@ -22,28 +22,8 @@ type Category = {
 
 const categories: Category[] = [
   {
-    name: 'Tacos',
-    order: 1,
-    description:
-      'Choose from favorites like carne asada, al pastor, carnitas, chicken, chorizo, and more.',
-    dishes: [
-      ['Regular Taco', 3.49, 'meat, cilantro, onions and salsa'],
-      ['Shrimp Taco', 4.7, 'shrimp, guacamole, sour cream, lettuce'],
-      ['Vegetarian Taco', 4.69, 'beans, rice, cheese, guacamole, sour cream, lettuce, tomato'],
-      [
-        'Taco Salad',
-        12.99,
-        'Meat, beans, rice, guacamole, sour cream, cheese, lettuce, salsa and flour shell tortilla',
-      ],
-      ['Taco de Lengua', 4.3, 'beef tongue with cilantro, onion, and salsa'],
-      ['Fish Taco', 4.69, 'Fish, lettuce, cheese, and salsa'],
-      ['Quesabirria', 5.2, 'Birria with melted cheese (Available in San Anselmo location only)'],
-      ['Steak Taco', 3.89, 'Steak, cilantro, onions and salsa'],
-    ],
-  },
-  {
     name: 'Burritos',
-    order: 2,
+    order: 1,
     description:
       'From our classic Regular Burrito to our Super and Jumbo options, made your way with your choice of meat, beans, rice, salsa and more.',
     dishes: [
@@ -78,6 +58,26 @@ const categories: Category[] = [
       ['Super Fish Burrito', 14.99, 'Same as regular plus guacamole, sour cream, and cheese'],
       ['Regular Lengua Burrito', 13.99, 'Beef tongue, pinto beans, rice, salsa'],
       ['Super Lengua Burrito', 14.99, 'Same as regular plus guacamole, cheese and sour cream'],
+    ],
+  },
+  {
+    name: 'Tacos',
+    order: 2,
+    description:
+      'Choose from favorites like carne asada, al pastor, carnitas, chicken, chorizo, and more.',
+    dishes: [
+      ['Regular Taco', 3.49, 'meat, cilantro, onions and salsa'],
+      ['Shrimp Taco', 4.7, 'shrimp, guacamole, sour cream, lettuce'],
+      ['Vegetarian Taco', 4.69, 'beans, rice, cheese, guacamole, sour cream, lettuce, tomato'],
+      [
+        'Taco Salad',
+        12.99,
+        'Meat, beans, rice, guacamole, sour cream, cheese, lettuce, salsa and flour shell tortilla',
+      ],
+      ['Taco de Lengua', 4.3, 'beef tongue with cilantro, onion, and salsa'],
+      ['Fish Taco', 4.69, 'Fish, lettuce, cheese, and salsa'],
+      ['Quesabirria', 5.2, 'Birria with melted cheese (Available in San Anselmo location only)'],
+      ['Steak Taco', 3.89, 'Steak, cilantro, onions and salsa'],
     ],
   },
   {
