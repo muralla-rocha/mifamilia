@@ -1,30 +1,9 @@
 import Image from 'next/image'
 import React from 'react'
 
-const locations = [
-  {
-    id: 'san-anselmo',
-    name: 'San Anselmo',
-    dot: '/images/dot-sa.svg',
-    photoLabel: 'Mapa San Anselmo',
-    street: '580 Redhill Avenue',
-    city: 'San Anselmo, CA 94960',
-    phone: '415-256-9411',
-    hours: 'Open daily 9 AM – 9 PM',
-    directionsClass: 'btn-red',
-  },
-  {
-    id: 'san-rafael',
-    name: 'San Rafael',
-    dot: '/images/dot-sr.svg',
-    photoLabel: 'Mapa San Rafael',
-    street: '55 Bellam Blvd',
-    city: 'San Rafael, CA 94901',
-    phone: '415-457-9520',
-    hours: 'Open daily 9 AM – 10 PM',
-    directionsClass: 'btn-green',
-  },
-]
+import { SiteFooter } from '@/components/SiteFooter'
+import { SiteHeader } from '@/components/SiteHeader'
+import { directionsUrl, locations } from '@/lib/locations'
 
 const menuCards = [
   {
@@ -53,49 +32,10 @@ const menuCards = [
   },
 ]
 
-const directionsUrl = (street: string, city: string) =>
-  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${street}, ${city}`)}`
-
 export default function HomePage() {
   return (
     <>
-      <header className="band-nav">
-        <div className="container nav">
-          <a aria-label="Taqueria Mi Familia — inicio" href="#home">
-            <Image
-              alt="Taqueria Mi Familia"
-              className="nav-logo"
-              height={85}
-              priority
-              src="/images/logo-nav.png"
-              width={170}
-            />
-          </a>
-          <nav aria-label="Principal" className="nav-links">
-            <a href="#home">Home</a>
-            <a href="#about">About Us</a>
-            <a href="#menu">Menu</a>
-            <a href="#locations">Locations</a>
-            <a href="#contact">Contact</a>
-          </nav>
-          <div className="nav-cta">
-            <a className="nav-phone" href="tel:+14152569411">
-              ☎ 415-256-9411
-            </a>
-            <a className="btn btn-red nav-find" href="#locations">
-              Find a Location
-            </a>
-            <a className="nav-call" href="tel:+14152569411">
-              Call us
-            </a>
-            <button aria-label="Abrir menú" className="nav-burger" type="button">
-              <span />
-              <span />
-              <span />
-            </button>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main>
         <section className="band-hero" id="home">
@@ -213,7 +153,7 @@ export default function HomePage() {
                         </li>
                       ))}
                     </ul>
-                    <a className="card-link" href="#menu">
+                    <a className="card-link" href="/menu">
                       SEE MORE&nbsp;&nbsp;→
                     </a>
                   </div>
@@ -222,7 +162,7 @@ export default function HomePage() {
             </div>
 
             <div className="menu-cta">
-              <a className="btn btn-gold" href="#menu">
+              <a className="btn btn-gold" href="/menu">
                 <span className="menu-cta-long">Explore the Full Menu&nbsp;&nbsp;→</span>
               </a>
             </div>
@@ -354,68 +294,7 @@ export default function HomePage() {
         </section>
       </main>
 
-      <footer className="band-footer">
-        <div className="container footer">
-          <div className="footer-top">
-            <div className="footer-brand">
-              <Image
-                alt="Taqueria Mi Familia"
-                className="footer-logo"
-                height={120}
-                src="/images/logo-footer.png"
-                width={240}
-              />
-              <p className="footer-tagline">Authentic Mexican food. Family-style hospitality.</p>
-            </div>
-
-            {locations.map((loc, i) => (
-              <div className="footer-col" key={loc.id}>
-                <p className="footer-label">{i === 0 ? 'VISIT US' : ' '}</p>
-                <p className="display footer-city">{loc.name}</p>
-                <address className="footer-address">
-                  {loc.street}
-                  <br />
-                  {loc.city}
-                  <br />
-                  {loc.phone}
-                </address>
-              </div>
-            ))}
-
-            <div className="footer-social">
-              <p className="footer-label">FOLLOW US</p>
-              <a
-                className="pill"
-                href="https://www.instagram.com/"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Instagram
-              </a>
-              <a
-                className="pill"
-                href="https://www.facebook.com/"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Facebook
-              </a>
-            </div>
-
-            <p className="footer-compact">
-              San Anselmo · 580 Redhill Ave · 415-256-9411
-              <br />
-              San Rafael · 55 Bellam Blvd · 415-457-9520
-            </p>
-            <p className="footer-compact footer-compact-social">Instagram · Facebook</p>
-          </div>
-
-          <div className="footer-bottom">
-            <p className="footer-copy">© 2026 Taqueria Mi Familia. All Rights Reserved.</p>
-            <p className="script footer-script">Hungry? Come see us!</p>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   )
 }

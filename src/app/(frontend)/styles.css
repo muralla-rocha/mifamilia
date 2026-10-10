@@ -122,6 +122,7 @@ section[id] {
 
 .photo {
   position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -135,7 +136,6 @@ section[id] {
   text-align: center;
   text-transform: uppercase;
 }
-
 
 /* ---------- Container ---------- */
 
@@ -1442,4 +1442,155 @@ section[id] {
   .footer-copy {
     font-size: 12px;
   }
+}
+
+.photo-img {
+  object-fit: cover;
+}
+
+/* ---------- Página de menú completo ---------- */
+
+.menu-page {
+  padding: 80px 120px 120px;
+}
+
+.menu-page-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 64px;
+  text-align: center;
+}
+
+.menu-page-head .section-kicker {
+  color: var(--red);
+}
+
+.menu-page-title {
+  color: var(--green-dark);
+  font-size: 60px;
+  line-height: 1.1;
+}
+
+.menu-section {
+  margin-bottom: 72px;
+  scroll-margin-top: 140px;
+}
+
+.menu-section-head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid rgba(47, 122, 59, 0.25);
+}
+
+.menu-section-title {
+  color: var(--green-dark);
+  font-size: 40px;
+  line-height: 1.2;
+}
+
+.menu-section-text {
+  max-width: 640px;
+  color: var(--brown);
+}
+
+.dish-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dish {
+  display: flex;
+  overflow: hidden;
+  border: 1px solid rgba(28, 23, 18, 0.08);
+  border-radius: 20px;
+  background: var(--cream-light);
+}
+
+.dish .photo {
+  flex: none;
+  width: 130px;
+  min-height: 130px;
+  padding: 0 8px;
+  font-size: 12px;
+}
+
+.dish-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  padding: 18px 20px;
+}
+
+.dish-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dish-name {
+  color: var(--green-dark);
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.dish-price {
+  color: var(--red);
+  font-family: var(--font-label);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.dish-text {
+  color: var(--brown);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+@media (max-width: 1200px) {
+  .menu-page {
+    padding: 64px 40px 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-page {
+    padding: 40px 22px 64px;
+  }
+
+  .menu-page-title {
+    font-size: 36px;
+  }
+
+  .menu-section-title {
+    font-size: 30px;
+  }
+
+  .dish-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.menu-empty {
+  padding: 48px 0;
+  color: var(--brown);
+  font-size: 20px;
+  font-style: italic;
+  text-align: center;
+}
+
+.cards:empty {
+  display: none;
 }
