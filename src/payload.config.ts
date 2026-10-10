@@ -1,4 +1,5 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
@@ -32,5 +33,13 @@ export default buildConfig({
     },
   }),
   sharp,
-  plugins: [],
+  plugins: [
+    // Sin BLOB_READ_WRITE_TOKEN (desarrollo local) los archivos se guardan en disco.
+    vercelBlobStorage({
+      clientUploads: true,
+      collections: { media: true },
+      enabled: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
+      token: process.env.BLOB_READ_WRITE_TOKEN || '',
+    }),
+  ],
 })
