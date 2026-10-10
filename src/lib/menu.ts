@@ -69,3 +69,26 @@ export async function getMenu(): Promise<MenuSection[]> {
 
 export const formatPrice = (price: number) =>
   new Intl.NumberFormat('en-US', { currency: 'USD', style: 'currency' }).format(price)
+
+export type MenuMeat = {
+  name: string
+  translation: string | null
+  sanAnselmoOnly: boolean
+}
+
+/** Carnes disponibles (global `menu-settings`), en el orden capturado en Payload. */
+export async function getMeats(): Promise<MenuMeat[]> {
+  try {
+    const payload = await getPayload({ config: await config })
+    const settings = await payload.findGlobal({ slug: 'menu-settings' })
+
+    return (settings.meats ?? []).map((meat) => ({
+      name: meat.name,
+      sanAnselmoOnly: Boolean(meat.sanAnselmoOnly),
+      translation: meat.translation ?? null,
+    }))
+  } catch (error) {
+    console.error('No se pudieron cargar las carnes desde Payload:', error)
+    return []
+  }
+}

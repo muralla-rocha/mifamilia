@@ -91,8 +91,12 @@ export interface Config {
     defaultIDType: number;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    'menu-settings': MenuSetting;
+  };
+  globalsSelect: {
+    'menu-settings': MenuSettingsSelect<false> | MenuSettingsSelect<true>;
+  };
   locale: null;
   widgets: {
     collections: CollectionsWidget;
@@ -382,6 +386,46 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "menu-settings".
+ */
+export interface MenuSetting {
+  id: number;
+  /**
+   * Carnes disponibles para los platillos que se preparan con "meat". Se muestran como guía en /menu.
+   */
+  meats?:
+    | {
+        name: string;
+        /**
+         * Por ejemplo: Beef Steak
+         */
+        translation?: string | null;
+        sanAnselmoOnly?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "menu-settings_select".
+ */
+export interface MenuSettingsSelect<T extends boolean = true> {
+  meats?:
+    | T
+    | {
+        name?: T;
+        translation?: T;
+        sanAnselmoOnly?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
