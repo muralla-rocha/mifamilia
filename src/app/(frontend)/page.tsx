@@ -181,7 +181,21 @@ export default function HomePage() {
             <div className="location-grid">
               {locations.map((loc) => (
                 <article className="location" key={loc.id}>
-                  <div className="photo">{loc.photoLabel}</div>
+                  <a
+                    aria-label={`Open ${loc.name} in Google Maps`}
+                    className="photo location-map"
+                    href={directionsUrl(loc.street, loc.city)}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <Image
+                      alt={`Map of the ${loc.name} location`}
+                      className="photo-img"
+                      fill
+                      sizes="(max-width: 768px) 346px, 582px"
+                      src={loc.map}
+                    />
+                  </a>
                   <div className="location-body">
                     <h3 className="display location-name">
                       <img alt="" height={14} src={loc.dot} width={14} />
