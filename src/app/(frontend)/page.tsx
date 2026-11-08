@@ -67,7 +67,7 @@ export default function HomePage() {
                   priority
                   quality={90}
                   sizes="(max-width: 768px) 534px, 1px"
-                  src="/images/food/tacos.jpeg"
+                  src="/images/food/tacos.webp"
                 />
               </div>
               <p className="hero-copy">
@@ -97,7 +97,7 @@ export default function HomePage() {
                   fill
                   quality={90}
                   sizes="924px"
-                  src="/images/food/tacos.jpeg"
+                  src="/images/food/tacos.webp"
                 />
               </div>
               <div className="photo collage-burrito">
