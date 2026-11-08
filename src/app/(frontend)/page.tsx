@@ -12,6 +12,9 @@ const menuCards = [
     tone: 'card-red',
     title: 'Tacos',
     photoLabel: 'Foto tacos',
+    photo: '/images/food/tacos.webp',
+    photoAlt: 'Two carne asada tacos on a plate',
+    photoClass: 'photo-img-tacos',
     text: 'Choose from favorites like carne asada, al pastor, carnitas, chicken, chorizo, and more.',
     tags: ['Carne asada', 'Al pastor', 'Chorizo'],
   },
@@ -20,6 +23,9 @@ const menuCards = [
     tone: 'card-gold',
     title: 'Burritos',
     photoLabel: 'Foto burrito',
+    photo: '/images/food/burritos.webp',
+    photoAlt: 'Burrito wrapped in foil, cut in half on a plate',
+    photoClass: 'photo-img-burrito',
     text: 'From our classic Regular Burrito to our Super and Jumbo options, made your way with your choice of meat, beans, rice, salsa and more.',
     tags: ['Regular', 'Super', 'Jumbo'],
   },
@@ -28,6 +34,9 @@ const menuCards = [
     tone: 'card-green',
     title: 'Mexican Favorites',
     photoLabel: 'Foto platillo / Mexican Favorites',
+    photo: '/images/food/favoritos.webp',
+    photoAlt: 'A plate of Mexican food with rice, beans, and meat',
+    photoClass: 'photo-img-favorites',
     text: 'Authentic flavors, generous portions, and the comforting food you crave.',
     tags: ['Plates', 'Combos', 'Sides'],
   },
@@ -50,7 +59,17 @@ export default function HomePage() {
                 Authentic flavors, fresh ingredients, and recipes made with the same care we’d serve
                 at home.
               </p>
-              <div className="photo hero-photo-mobile">Foto tacos</div>
+              <div className="photo hero-photo-mobile">
+                <Image
+                  alt="Two carne asada tacos on a plate"
+                  className="photo-img photo-img-tacos"
+                  fill
+                  priority
+                  quality={90}
+                  sizes="(max-width: 768px) 534px, 1px"
+                  src="/images/food/tacos.jpeg"
+                />
+              </div>
               <p className="hero-copy">
                 For over 20 years, Taqueria Mi Familia has been bringing the flavors of Mexico to
                 Marin County
@@ -71,8 +90,26 @@ export default function HomePage() {
 
             <div aria-hidden="true" className="collage">
               <div className="collage-back" />
-              <div className="photo collage-tacos">Foto tacos</div>
-              <div className="photo collage-burrito">Foto burrito</div>
+              <div className="photo collage-tacos">
+                <Image
+                  alt=""
+                  className="photo-img photo-img-tacos-collage"
+                  fill
+                  quality={90}
+                  sizes="924px"
+                  src="/images/food/tacos.jpeg"
+                />
+              </div>
+              <div className="photo collage-burrito">
+                <Image
+                  alt=""
+                  className="photo-img photo-img-burrito"
+                  fill
+                  quality={90}
+                  sizes="445px"
+                  src="/images/food/burritos.webp"
+                />
+              </div>
               <div className="collage-badge">
                 <img alt="" height={150} src="/images/since-badge.svg" width={150} />
                 <div className="collage-badge-text">
@@ -142,7 +179,20 @@ export default function HomePage() {
             <div className="cards">
               {menuCards.map((card) => (
                 <article className={`card ${card.tone}`} key={card.id}>
-                  <div className="photo">{card.photoLabel}</div>
+                  <div className="photo">
+                    {card.photo ? (
+                      <Image
+                        alt={card.photoAlt ?? ''}
+                        className={`photo-img ${card.photoClass}`}
+                        fill
+                        quality={90}
+                        sizes="534px"
+                        src={card.photo}
+                      />
+                    ) : (
+                      card.photoLabel
+                    )}
+                  </div>
                   <div className="card-bar" />
                   <div className="card-body">
                     <h3 className="display card-title">{card.title}</h3>

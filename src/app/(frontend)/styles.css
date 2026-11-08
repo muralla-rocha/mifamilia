@@ -1448,6 +1448,25 @@ section[id] {
   object-fit: cover;
 }
 
+/* Recorta hacia el burrito y deja fuera el logo de la esquina */
+.photo-img-burrito {
+  object-position: 50% 50%;
+}
+
+/* Tacos: en recortes anchos se corre a la izquierda para dejar fuera el logo (arriba a la derecha) */
+.photo-img-tacos {
+  object-position: 18% 50%;
+}
+
+.photo-img-tacos-collage {
+  object-position: 52% 50%;
+}
+
+/* En la tarjeta el recorte es más ancho, así que se desplaza un poco para no mostrar el logo */
+.card .photo-img-burrito {
+  object-position: 56% 50%;
+}
+
 /* ---------- Página de menú completo ---------- */
 
 .menu-page {
