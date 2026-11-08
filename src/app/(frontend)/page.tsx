@@ -126,8 +126,26 @@ export default function HomePage() {
         <section className="band-about" id="about">
           <div className="container about">
             <div className="about-photos">
-              <div className="photo about-photo-a">Foto del local / fachada</div>
-              <div className="photo about-photo-b">Foto interior / familia</div>
+              <div className="photo about-photo-a">
+                <Image
+                  alt="Mi Familia storefront in San Anselmo"
+                  className="photo-img photo-img-fachada"
+                  fill
+                  quality={90}
+                  sizes="640px"
+                  src="/images/fachada.webp"
+                />
+              </div>
+              <div className="photo about-photo-b">
+                <Image
+                  alt="Dining area inside Mi Familia"
+                  className="photo-img"
+                  fill
+                  quality={90}
+                  sizes="320px"
+                  src="/images/inside.webp"
+                />
+              </div>
             </div>
             <div className="about-body">
               <p className="eyebrow">About Us</p>

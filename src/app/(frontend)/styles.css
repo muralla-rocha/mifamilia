@@ -1453,6 +1453,11 @@ section[id] {
   object-position: 50% 50%;
 }
 
+/* Fachada: centra el recorte en el letrero */
+.photo-img-fachada {
+  object-position: 55% 50%;
+}
+
 /* Tacos: en recortes anchos se corre a la izquierda para dejar fuera el logo (arriba a la derecha) */
 .photo-img-tacos {
   object-position: 18% 50%;
