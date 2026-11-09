@@ -1,15 +1,30 @@
 'use client'
 
-import React, { useActionState } from 'react'
+import Link from 'next/link'
+import Script from 'next/script'
+import React, { useActionState, useEffect } from 'react'
 
 import { submitContact } from '@/app/(frontend)/actions/contact'
 import { initialContactState, type ContactFormState } from '@/lib/contactForm'
+
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
+
+declare global {
+  interface Window {
+    turnstile?: { reset: () => void }
+  }
+}
 
 export function ContactForm() {
   const [state, formAction, pending] = useActionState<ContactFormState, FormData>(
     submitContact,
     initialContactState,
   )
+
+  // El token de Turnstile es de un solo uso: hay que renovarlo tras cada envío.
+  useEffect(() => {
+    if (state.status !== 'idle') window.turnstile?.reset()
+  }, [state])
 
   const { errors, values } = state
   const describedBy = (key: keyof typeof errors) => (errors[key] ? `${key}-error` : undefined)
@@ -115,6 +130,23 @@ export function ContactForm() {
         <label htmlFor="website">Website</label>
         <input autoComplete="off" id="website" name="website" tabIndex={-1} />
       </div>
+
+      {TURNSTILE_SITE_KEY && (
+        <>
+          <Script
+            async
+            defer
+            src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+            strategy="lazyOnload"
+          />
+          <div className="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} />
+        </>
+      )}
+
+      <p className="form-note">
+        By sending this message you agree that we may use your information to reply to you. See our{' '}
+        <Link href="/privacy">Privacy Policy</Link>.
+      </p>
 
       <button className="btn btn-red" disabled={pending} type="submit">
         {pending ? 'Sending…' : 'Send Message  →'}

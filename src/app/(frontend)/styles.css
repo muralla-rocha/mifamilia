@@ -847,6 +847,57 @@ section[id] {
   width: 100%;
 }
 
+.form-note {
+  margin: 0;
+  color: var(--brown);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.form-note a,
+.footer-copy a,
+.legal a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.footer-compact-social a {
+  color: inherit;
+}
+
+/* ---------- Páginas legales ---------- */
+
+.legal {
+  max-width: 760px;
+  margin-inline: auto;
+  padding: 80px 24px 120px;
+  color: var(--ink);
+  line-height: 1.7;
+}
+
+.legal h1 {
+  margin: 0 0 8px;
+  color: var(--green-dark);
+  font-size: 48px;
+  line-height: 1.1;
+}
+
+.legal h2 {
+  margin: 36px 0 8px;
+  color: var(--green-dark);
+  font-size: 26px;
+}
+
+.legal p,
+.legal ul {
+  margin: 0 0 12px;
+}
+
+.legal-updated {
+  color: var(--brown);
+  font-size: 14px;
+}
+
 /* ---------- Footer ---------- */
 
 .footer {

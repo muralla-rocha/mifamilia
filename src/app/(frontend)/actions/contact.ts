@@ -1,11 +1,19 @@
 'use server'
 
+import { headers } from 'next/headers'
 import { getPayload } from 'payload'
 
 import { initialContactState, type ContactFormState } from '@/lib/contactForm'
+import { sendContactNotification } from '@/lib/notify'
+import { verifyTurnstile } from '@/lib/turnstile'
 import config from '@/payload.config'
 
 const LOCATIONS = ['san-anselmo', 'san-rafael'] as const
+
+// Límites contra abuso (se cuentan en la base de datos, así funcionan en serverless).
+const MAX_PER_EMAIL_PER_HOUR = 3
+const MAX_TOTAL_PER_HOUR = 40
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 const field = (formData: FormData, key: string) => {
@@ -46,8 +54,42 @@ export async function submitContact(
     return { errors, message: 'Please check the highlighted fields.', status: 'error', values }
   }
 
+  const requestHeaders = await headers()
+  const ip = requestHeaders.get('x-forwarded-for')?.split(',')[0]?.trim()
+
+  if (!(await verifyTurnstile(field(formData, 'cf-turnstile-response'), ip))) {
+    return {
+      errors: {},
+      message: 'Please complete the verification and try again.',
+      status: 'error',
+      values,
+    }
+  }
+
   try {
     const payload = await getPayload({ config: await config })
+
+    const since = new Date(Date.now() - 60 * 60 * 1000).toISOString()
+    const [fromEmail, total] = await Promise.all([
+      payload.count({
+        collection: 'contact-messages',
+        where: {
+          and: [{ email: { equals: values.email } }, { createdAt: { greater_than: since } }],
+        },
+      }),
+      payload.count({
+        collection: 'contact-messages',
+        where: { createdAt: { greater_than: since } },
+      }),
+    ])
+    if (fromEmail.totalDocs >= MAX_PER_EMAIL_PER_HOUR || total.totalDocs >= MAX_TOTAL_PER_HOUR) {
+      return {
+        errors: {},
+        message: 'We’ve received several messages already. Please try again later or call us.',
+        status: 'error',
+        values,
+      }
+    }
 
     await payload.create({
       collection: 'contact-messages',
@@ -60,6 +102,19 @@ export async function submitContact(
         status: 'new',
       },
     })
+
+    // El mensaje ya está guardado; si el correo falla no se le avisa al visitante.
+    try {
+      await sendContactNotification({
+        email: values.email,
+        location: values.location,
+        message: values.message,
+        name: values.name,
+        phone: values.phone,
+      })
+    } catch (error) {
+      console.error('No se pudo enviar el aviso por correo:', error)
+    }
   } catch (error) {
     console.error('No se pudo guardar el mensaje de contacto:', error)
     return {
