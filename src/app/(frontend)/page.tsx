@@ -5,6 +5,7 @@ import { ContactForm } from '@/components/ContactForm'
 import { SiteFooter } from '@/components/SiteFooter'
 import { SiteHeader } from '@/components/SiteHeader'
 import { directionsUrl, locations } from '@/lib/locations'
+import { restaurantJsonLd } from '@/lib/structuredData'
 
 const menuCards = [
   {
@@ -45,6 +46,7 @@ const menuCards = [
 export default function HomePage() {
   return (
     <>
+      <script dangerouslySetInnerHTML={{ __html: restaurantJsonLd() }} type="application/ld+json" />
       <SiteHeader />
 
       <main>

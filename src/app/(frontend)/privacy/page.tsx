@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import React from 'react'
 
 import { SiteFooter } from '@/components/SiteFooter'
@@ -5,9 +6,10 @@ import { SiteHeader } from '@/components/SiteHeader'
 import { locations } from '@/lib/locations'
 import { site } from '@/lib/site'
 
-export const metadata = {
+export const metadata: Metadata = {
+  alternates: { canonical: '/privacy' },
   description: 'How Taqueria Mi Familia collects, uses and protects your information.',
-  title: 'Privacy Policy — Taqueria Mi Familia',
+  title: 'Privacy Policy',
 }
 
 export default function PrivacyPage() {

@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import React from 'react'
 
@@ -8,9 +9,11 @@ import { formatPrice, getMeats, getMenu } from '@/lib/menu'
 // El menú vive en Payload: se consulta en cada petición, no en el build.
 export const dynamic = 'force-dynamic'
 
-export const metadata = {
-  description: 'El menú completo de Taqueria Mi Familia: tacos, burritos y favoritos mexicanos.',
-  title: 'Menu — Taqueria Mi Familia',
+export const metadata: Metadata = {
+  alternates: { canonical: '/menu' },
+  description:
+    'The full Taqueria Mi Familia menu: tacos, burritos and Mexican favorites, with prices and our choice of meats.',
+  title: 'Menu',
 }
 
 export default async function MenuPage() {

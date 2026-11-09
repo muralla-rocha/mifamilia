@@ -1,5 +1,7 @@
+import type { Metadata } from 'next'
 import React from 'react'
 import { Fraunces, Oswald, Work_Sans, Yellowtail } from 'next/font/google'
+import { siteUrl } from '@/lib/site'
 import './styles.css'
 
 const fraunces = Fraunces({
@@ -30,10 +32,38 @@ const yellowtail = Yellowtail({
   weight: '400',
 })
 
-export const metadata = {
-  description:
-    'Taqueria Mi Familia — Real Mexican food, made like family. Tacos, burritos y favoritos mexicanos en San Anselmo y San Rafael, CA.',
-  title: 'Taqueria Mi Familia',
+const description =
+  'Taqueria Mi Familia — Real Mexican food, made like family. Tacos, burritos and Mexican favorites in San Anselmo and San Rafael, CA.'
+
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+  description,
+  metadataBase: new URL(siteUrl),
+  openGraph: {
+    description,
+    images: [
+      {
+        alt: 'Carne asada tacos from Taqueria Mi Familia',
+        height: 630,
+        url: '/images/og.jpg',
+        width: 1200,
+      },
+    ],
+    locale: 'en_US',
+    siteName: 'Taqueria Mi Familia',
+    title: 'Taqueria Mi Familia — Real Mexican Food. Made Like Family.',
+    type: 'website',
+  },
+  title: {
+    default: 'Taqueria Mi Familia — Mexican Food in San Anselmo & San Rafael',
+    template: '%s — Taqueria Mi Familia',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    description,
+    images: ['/images/og.jpg'],
+    title: 'Taqueria Mi Familia — Real Mexican Food. Made Like Family.',
+  },
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
