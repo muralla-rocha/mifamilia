@@ -7,6 +7,10 @@ const __filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(__filename)
 
 const nextConfig: NextConfig = {
+  experimental: {
+    // Un solo 404 para toda la app: hay dos root layouts (sitio y admin de Payload).
+    globalNotFound: true,
+  },
   images: {
     qualities: [75, 90],
     localPatterns: [

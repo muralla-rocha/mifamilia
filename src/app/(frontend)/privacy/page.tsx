@@ -37,6 +37,11 @@ export default function PrivacyPage() {
             address, browser type and the pages requested. We use it to keep the site secure and
             working, not to identify you.
           </p>
+          <p>
+            We also use Vercel Analytics and Speed Insights to understand how many people visit the
+            site, which pages they view and how fast the site loads. They do not use cookies and
+            does not track you across other websites.
+          </p>
 
           <h2 className="display">How we use it</h2>
           <ul>

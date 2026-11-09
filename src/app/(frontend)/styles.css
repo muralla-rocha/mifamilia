@@ -865,6 +865,68 @@ section[id] {
   color: inherit;
 }
 
+/* ---------- Páginas de estado (404 / error) ---------- */
+
+.status-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 100px 24px 140px;
+  text-align: center;
+}
+
+.status-code {
+  margin: 0;
+  color: var(--gold);
+  font-size: 140px;
+  line-height: 1;
+}
+
+.status-page .section-kicker {
+  color: var(--red);
+}
+
+.status-title {
+  margin: 0;
+  color: var(--green-dark);
+  font-size: 56px;
+  line-height: 1.1;
+}
+
+.status-text {
+  max-width: 520px;
+  margin: 8px 0 20px;
+  color: var(--brown);
+  line-height: 1.6;
+}
+
+.status-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .status-page {
+    padding: 56px 22px 80px;
+  }
+
+  .status-code {
+    font-size: 96px;
+  }
+
+  .status-title {
+    font-size: 36px;
+  }
+
+  .status-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
 /* ---------- Páginas legales ---------- */
 
 .legal {
